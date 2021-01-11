@@ -24,9 +24,9 @@
               <v-list-item-icon>
                 <v-icon color="white">{{ link.icon }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-content class="white--text">
+              <v-list-item-action class="white--text">
                 {{ link.text }}
-              </v-list-item-content>
+              </v-list-item-action>
             </v-list-item>
 
           </v-list-item-group>
