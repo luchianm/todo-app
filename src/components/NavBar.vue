@@ -11,12 +11,27 @@
           </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+<!--      dropdown menu      -->
+        <v-menu>
+          <v-btn flat slot="activator" color="grey">
+            <v-icon>mdi-expand_more</v-icon>
+          </v-btn>
+        </v-menu>
+
         <v-btn flat color="grey" class="lighten-2">
           <span class="grey--text ">Sign Out</span>
           <v-icon color="grey" right>mdi-logout</v-icon>
         </v-btn>
     </v-app-bar>
     <v-navigation-drawer app hide-overlay class="primary" v-model="drawer">
+      <v-layout column align-center>
+        <v-flex class="mt-8">
+          <v-avatar size="150">
+            <v-img :src="require('@/assets/avatar/1-avatar.jpg')"></v-img>
+          </v-avatar>
+          <p align="center" class="my-4 white--text v-subheader">Mihai's Profile</p>
+        </v-flex>
+      </v-layout>
       <v-list>
         <v-list-item-title>
           <v-list-item-group >

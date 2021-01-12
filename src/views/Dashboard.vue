@@ -1,7 +1,27 @@
 <template>
   <div class="Dashboard ma-1">
-    <h1 class="subheading grey--text display-1">Dashboard</h1>
+    <h1 class="v-subheader grey--text display-1" >Dashboard</h1>
     <v-container class="ma-10">
+      <v-layout row wrap class="mb-4">
+        <v-tooltip top>
+          <template v-slot:activator=" { on,attrs } ">
+            <v-btn small color="grey" v-on="on" v-bind="attrs" class="ma-2 v-btn--flat lighten-2" @click="sortBy('title')">
+              <v-icon left small>mdi-folder</v-icon>
+              <span class="caption text-lowercase">By project name</span>
+            </v-btn>
+          </template>
+          <span>Order alphabetically by project name</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator=" { on, attrs } ">
+            <v-btn small v-bind="attrs" v-on="on" class="v-btn--flat ma-2 lighten-2" color="grey" @click="sortBy('person')">
+              <v-icon left small>mdi-account</v-icon>
+              <span class="caption text-lowercase">by person</span>
+            </v-btn>
+          </template>
+          <span>Order alphabetically by project responsible</span>
+        </v-tooltip>
+      </v-layout>
       <v-card flat class="pa-3 grey lighten-4" v-for="project in projects" :key="project.title">
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
           <v-flex xs12 md6>
@@ -17,8 +37,8 @@
             <div>{{ project.due }}</div>
           </v-flex>
           <v-flex xs2 sm4 md2>
-            <div>
-              <v-chip :class="`${project.status} white--text caption my-2`" :color="`${project.status}`" small>{{project.status}}</v-chip>
+            <div class="align-center">
+              <v-chip :class="` white--text caption my-2`" :color="color(project)" small>{{project.status}}</v-chip>
             </div>
           </v-flex>
 
@@ -71,14 +91,20 @@ export default {
   methods:{
     color(prop){
       if (prop.status ==='complete'){
-        return('success');
+        return('green');
       }
       else if (prop.status ==='ongoing'){
-        return('orange');
+        return('yellow');
       }
-      else
-        return('tomato');
+      else {
+        return ('red');
+      }
+    },
+    sortBy(prop){
+      this.projects.sort((a,b) => a[prop] < b[prop] ? -1 : 1);
+
     }
+
   }
 }
 </script>
@@ -94,13 +120,5 @@ export default {
 .project.overdue{
   border-left: 4px solid tomato;
 }
-.v-chip.complete{
-  background: #3cd1c2;
-}
-.v-chip.ongoing{
-  background: orange;
-}
-.v-chip.overdue{
-  background: tomato;
-}
+
 </style>
