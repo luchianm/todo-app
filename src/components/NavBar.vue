@@ -26,7 +26,6 @@
             </v-list-item>
           </v-list>
         </v-menu>
-
         <v-btn flat color="grey" class="lighten-2">
           <span class="grey--text ">Sign Out</span>
           <v-icon color="grey" right>mdi-logout</v-icon>
@@ -38,7 +37,11 @@
           <v-avatar size="150">
             <v-img :src="require('@/assets/avatar/1-avatar.jpg')"></v-img>
           </v-avatar>
-          <p align="center" class="my-4 white--text v-subheader">Mihai's Profile</p>
+          <p class="my-4 white--text v-subheader">Mihai's Profile</p>
+          <v-flex class="mt-8 mb-6">
+            <NewProject/>
+          </v-flex>
+
         </v-flex>
       </v-layout>
       <v-list>
@@ -52,7 +55,6 @@
                 {{ link.text }}
               </v-list-item-action>
             </v-list-item>
-
           </v-list-item-group>
         </v-list-item-title>
       </v-list>
@@ -61,7 +63,10 @@
 </template>
 <script>
 
+import NewProject from "@/components/NewProject";
+
 export default {
+  components: {NewProject},
   data(){
     return{
       drawer: false,
